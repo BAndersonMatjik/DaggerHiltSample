@@ -23,14 +23,15 @@ class HomeViewModelTest {
     @MockK
     lateinit var mainRepo: IMainRepo
 
-    @InjectMockKs
     lateinit var homeViewModel: HomeViewModel
 
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        mainRepo = mockk<IMainRepo>()
+    }
+
+    fun startTest(){
         homeViewModel = HomeViewModel(mainRepo)
     }
 
@@ -44,6 +45,8 @@ class HomeViewModelTest {
         every {
             mainRepo.getData()
         } returns "Test"
+
+        startTest()
 
         assertEquals("Test", homeViewModel.title)
     }
